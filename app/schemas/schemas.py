@@ -70,7 +70,7 @@ class TaskResponse(BaseModel):
     title: str
     description: Optional[str]
     assigned_to_id: int
-    status: str
+    
     assignment_date: datetime
     due_date: Optional[datetime]
     total_time: float
