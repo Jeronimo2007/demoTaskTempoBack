@@ -44,7 +44,7 @@ def get_all_tasks_by_client(client_id: int):
     """get all task from de client id"""
 
     response = supabase.table("tasks").select(
-        "id, title, status, due_date, client_id, clients!inner(name, active), area"
+        "id, title,  client_id, clients!inner(name, active), area"
     ).eq("client_id", client_id).eq('clients.active', True).execute()
 
 
@@ -56,8 +56,7 @@ def get_all_tasks_by_client(client_id: int):
         {
             "id": task["id"],
             "title": task["title"],
-            "status": task["status"],
-            "due_date": task["due_date"],
+            
             "client": task["clients"]["name"] if task["clients"] else "Sin Cliente",
             "area": task.get("area"),
             "billing_type": task.get("billing_type"),
